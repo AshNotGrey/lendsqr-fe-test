@@ -1,0 +1,244 @@
+[
+  {
+    "id": "LSQ001",
+    "organization": "Lendsqr",
+    "username": "grace_effiom",
+    "email": "grace@lendsqr.com",
+    "phoneNumber": "07060780922",
+    "dateJoined": "2020-05-15T10:00:00.000Z",
+    "status": "Active",
+    "avatar": "https://i.pravatar.cc/150?u=grace@lendsqr.com",
+    "fullName": "Grace Effiom",
+    "userTier": 1,
+    "accountBalance": "200000.00",
+    "accountBank": "Providus Bank",
+    "accountNumber": "9912345678",
+    "personalInfo": {
+      "fullName": "Grace Effiom",
+      "phoneNumber": "07060780922",
+      "emailAddress": "grace@lendsqr.com",
+      "bvn": "1234567890",
+      "gender": "Female",
+      "maritalStatus": "Single",
+      "children": "None",
+      "typeOfResidence": "Parent's Apartment"
+    },
+    "educationAndEmployment": {
+      "levelOfEducation": "B.Sc",
+      "employmentStatus": "Employed",
+      "sectorOfEmployment": "FinTech",
+      "durationOfEmployment": "2 years",
+      "officeEmail": "grace@work.com",
+      "monthlyIncome": "N200,000.00 - N400,000.00",
+      "loanRepayment": "40000"
+    },
+    "socials": {
+      "facebook": "grace.effiom",
+      "twitter": "@grace_effiom",
+      "instagram": "@grace_effiom"
+    },
+    "guarantors": [
+      {
+        "fullName": "Debby Ogana",
+        "phoneNumber": "07060780922",
+        "emailAddress": "debby@gmail.com",
+        "relationship": "Sister"
+      }
+    ]
+  },
+  {
+    "id": "LSQ002",
+    "organization": "Irorun",
+    "username": "adedeji",
+    "email": "adedeji@irorun.com",
+    "phoneNumber": "08078903721",
+    "dateJoined": "2020-04-30T10:00:00.000Z",
+    "status": "Pending",
+    "avatar": "https://i.pravatar.cc/150?u=adedeji@irorun.com",
+    "fullName": "Adedeji Adebayo",
+    "userTier": 2,
+    "accountBalance": "450000.00",
+    "accountBank": "GTBank",
+    "accountNumber": "1234567890",
+    "personalInfo": {
+      "fullName": "Adedeji Adebayo",
+      "phoneNumber": "08078903721",
+      "emailAddress": "adedeji@irorun.com",
+      "bvn": "0987654321",
+      "gender": "Male",
+      "maritalStatus": "Married",
+      "children": "2",
+      "typeOfResidence": "Personal Property"
+    },
+    "educationAndEmployment": {
+      "levelOfEducation": "M.Sc",
+      "employmentStatus": "Employed",
+      "sectorOfEmployment": "Education",
+      "durationOfEmployment": "5 years",
+      "officeEmail": "adedeji@company.com",
+      "monthlyIncome": "N400,000.00 - N800,000.00",
+      "loanRepayment": "60000"
+    },
+    "socials": {
+      "facebook": "adedeji.adebayo",
+      "twitter": "@adedeji_codes",
+      "instagram": "@adedeji"
+    },
+    "guarantors": [
+      {
+        "fullName": "John Doe",
+        "phoneNumber": "08012345678",
+        "emailAddress": "john@example.com",
+        "relationship": "Friend"
+      },
+      {
+        "fullName": "Jane Smith",
+        "phoneNumber": "09087654321",
+        "emailAddress": "jane@example.com",
+        "relationship": "Colleague"
+      }
+    ]
+  },
+  {
+    "id": "LSQ003",
+    "organization": "Lendsqr",
+    "username": "tosin_mark",
+    "email": "tosin@lendsqr.com",
+    "phoneNumber": "07003309226",
+    "dateJoined": "2020-04-10T10:00:00.000Z",
+    "status": "Active",
+    "avatar": "https://i.pravatar.cc/150?u=tosin@lendsqr.com",
+    "fullName": "Tosin Mark",
+    "userTier": 3,
+    "accountBalance": "850000.00",
+    "accountBank": "Access Bank",
+    "accountNumber": "5551234567",
+    "personalInfo": {
+      "fullName": "Tosin Mark",
+      "phoneNumber": "07003309226",
+      "emailAddress": "tosin@lendsqr.com",
+      "bvn": "5555666677",
+      "gender": "Male",
+      "maritalStatus": "Single",
+      "children": "None",
+      "typeOfResidence": "Rented Apartment"
+    },
+    "educationAndEmployment": {
+      "levelOfEducation": "Ph.D",
+      "employmentStatus": "Self-Employed",
+      "sectorOfEmployment": "FinTech",
+      "durationOfEmployment": "10 years",
+      "officeEmail": "tosin@startup.io",
+      "monthlyIncome": "N800,000.00 - N1,500,000.00",
+      "loanRepayment": "100000"
+    },
+    "socials": {
+      "facebook": "tosin.mark",
+      "twitter": "@tosin_mark",
+      "instagram": "@tosinmark"
+    },
+    "guarantors": [
+      {
+        "fullName": "Mary Johnson",
+        "phoneNumber": "08055551234",
+        "emailAddress": "mary@example.com",
+        "relationship": "Spouse"
+      }
+    ]
+  },
+  {
+    "id": "LSQ004",
+    "organization": "Irorun",
+    "username": "chioma_nw",
+    "email": "chioma@gmail.com",
+    "phoneNumber": "08160780900",
+    "dateJoined": "2020-03-25T10:00:00.000Z",
+    "status": "Blacklisted",
+    "avatar": "https://i.pravatar.cc/150?u=chioma@gmail.com",
+    "fullName": "Chioma Nwankwo",
+    "userTier": 1,
+    "accountBalance": "50000.00",
+    "accountBank": "First Bank",
+    "accountNumber": "3339876543",
+    "personalInfo": {
+      "fullName": "Chioma Nwankwo",
+      "phoneNumber": "08160780900",
+      "emailAddress": "chioma@gmail.com",
+      "bvn": "7778889990",
+      "gender": "Female",
+      "maritalStatus": "Divorced",
+      "children": "1",
+      "typeOfResidence": "Parent's Apartment"
+    },
+    "educationAndEmployment": {
+      "levelOfEducation": "High School",
+      "employmentStatus": "Unemployed",
+      "sectorOfEmployment": "None",
+      "durationOfEmployment": "0 years",
+      "officeEmail": "",
+      "monthlyIncome": "N0 - N50,000.00",
+      "loanRepayment": "0"
+    },
+    "socials": {
+      "facebook": "chioma.nwankwo",
+      "twitter": "@chioma_nw",
+      "instagram": "@chioma"
+    },
+    "guarantors": [
+      {
+        "fullName": "Peter Obi",
+        "phoneNumber": "07011112222",
+        "emailAddress": "peter@example.com",
+        "relationship": "Sibling"
+      }
+    ]
+  },
+  {
+    "id": "LSQ005",
+    "organization": "Lendsqr",
+    "username": "emeka_okon",
+    "email": "emeka@lendsqr.com",
+    "phoneNumber": "09087890928",
+    "dateJoined": "2020-02-14T10:00:00.000Z",
+    "status": "Inactive",
+    "avatar": "https://i.pravatar.cc/150?u=emeka@lendsqr.com",
+    "fullName": "Emeka Okonkwo",
+    "userTier": 2,
+    "accountBalance": "320000.00",
+    "accountBank": "Providus Bank",
+    "accountNumber": "7778889991",
+    "personalInfo": {
+      "fullName": "Emeka Okonkwo",
+      "phoneNumber": "09087890928",
+      "emailAddress": "emeka@lendsqr.com",
+      "bvn": "3334445556",
+      "gender": "Male",
+      "maritalStatus": "Married",
+      "children": "3+",
+      "typeOfResidence": "Personal Property"
+    },
+    "educationAndEmployment": {
+      "levelOfEducation": "B.Sc",
+      "employmentStatus": "Employed",
+      "sectorOfEmployment": "Agriculture",
+      "durationOfEmployment": "7 years",
+      "officeEmail": "emeka@agribusiness.com",
+      "monthlyIncome": "N300,000.00 - N500,000.00",
+      "loanRepayment": "45000"
+    },
+    "socials": {
+      "facebook": "emeka.okonkwo",
+      "twitter": "@emeka_okon",
+      "instagram": "@emekaokon"
+    },
+    "guarantors": [
+      {
+        "fullName": "Ada Obi",
+        "phoneNumber": "08033334444",
+        "emailAddress": "ada@example.com",
+        "relationship": "Friend"
+      }
+    ]
+  }
+]
+
