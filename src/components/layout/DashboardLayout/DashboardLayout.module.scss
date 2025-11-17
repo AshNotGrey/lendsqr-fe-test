@@ -1,0 +1,31 @@
+/**
+ * DashboardLayout Styles
+ */
+
+.dashboardLayout {
+  display: flex;
+  min-height: 100vh;
+  background-color: $color-gray-bg;
+}
+
+.mainWrapper {
+  flex: 1;
+  margin-left: $sidebar-width;
+  display: flex;
+  flex-direction: column;
+  
+  @include mobile-only {
+    margin-left: 0;
+  }
+}
+
+.mainContent {
+  flex: 1;
+  margin-top: $header-height;
+  padding: $spacing-2xl;
+  
+  @include mobile-only {
+    padding: $spacing-md;
+  }
+}
+
