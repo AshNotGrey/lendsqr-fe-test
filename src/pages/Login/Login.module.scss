@@ -1,0 +1,145 @@
+/**
+ * Login Page Styles
+ * Pixel-perfect implementation from Figma design
+ */
+
+.loginPage {
+  min-height: 100vh;
+  display: flex;
+  
+  @include mobile-only {
+    flex-direction: column;
+  }
+}
+
+// Left Section - Illustration
+.leftSection {
+  flex: 1;
+  background-color: $color-white;
+  padding: $spacing-2xl;
+  display: flex;
+  flex-direction: column;
+  
+  @include mobile-only {
+    padding: $spacing-xl $spacing-md;
+    min-height: 30vh;
+  }
+  
+  @include desktop {
+    padding: $spacing-3xl $spacing-2xl;
+  }
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  margin-bottom: $spacing-3xl;
+  
+  @include mobile-only {
+    margin-bottom: $spacing-xl;
+  }
+}
+
+.logoText {
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-bold;
+  color: $color-navy;
+  
+  @include mobile-only {
+    font-size: $font-size-2xl;
+  }
+}
+
+.illustration {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  @include mobile-only {
+    display: none;
+  }
+}
+
+.illustrationImage {
+  max-width: 100%;
+  height: auto;
+  max-height: 500px;
+}
+
+// Right Section - Form
+.rightSection {
+  flex: 1;
+  background-color: $color-white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-xl $spacing-md;
+  
+  @include desktop {
+    padding: $spacing-2xl;
+  }
+}
+
+.formContainer {
+  width: 100%;
+  max-width: 450px;
+  
+  @include mobile-only {
+    max-width: 100%;
+  }
+}
+
+.formHeader {
+  margin-bottom: $spacing-3xl;
+  
+  @include mobile-only {
+    margin-bottom: $spacing-xl;
+  }
+}
+
+.title {
+  @include heading-1;
+  margin-bottom: $spacing-md;
+  
+  @include mobile-only {
+    font-size: $font-size-3xl;
+  }
+}
+
+.subtitle {
+  @include body-text;
+  font-size: $font-size-xl;
+  
+  @include mobile-only {
+    font-size: $font-size-base;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.forgotPassword {
+  @include small-text;
+  color: $color-primary;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  margin-top: -$spacing-sm;
+  margin-bottom: $spacing-md;
+  transition: color $transition-fast;
+  
+  &:hover {
+    color: $color-primary-dark;
+  }
+  
+  &:focus-visible {
+    @include focus-visible;
+  }
+}
+
