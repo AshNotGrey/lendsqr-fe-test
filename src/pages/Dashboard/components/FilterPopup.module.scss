@@ -1,0 +1,78 @@
+/**
+ * FilterPopup Component Styles
+ */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  z-index: $z-index-dropdown - 1;
+}
+
+.filterPopup {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: $spacing-sm;
+  background-color: $color-white;
+  border: 1px solid $color-gray-lighter;
+  border-radius: $radius-md;
+  box-shadow: $shadow-xl;
+  padding: $spacing-xl;
+  z-index: $z-index-dropdown;
+  min-width: 270px;
+  max-width: 300px;
+  
+  @include mobile-only {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 320px;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.label {
+  @include small-text;
+  font-weight: $font-weight-medium;
+  color: $color-gray;
+}
+
+.input,
+.select {
+  @include input-field;
+  padding: $spacing-md;
+  font-size: $font-size-sm;
+}
+
+.select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23545F7D' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right $spacing-md center;
+  padding-right: $spacing-2xl;
+}
+
+.buttonGroup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-md;
+  margin-top: $spacing-sm;
+}
+

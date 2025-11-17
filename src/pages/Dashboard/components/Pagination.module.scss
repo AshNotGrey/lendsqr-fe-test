@@ -1,0 +1,103 @@
+/**
+ * Pagination Component Styles
+ */
+
+.pagination {
+  @include flex-between;
+  padding-top: $spacing-xl;
+  margin-top: $spacing-xl;
+  border-top: 1px solid $color-gray-lighter;
+  gap: $spacing-lg;
+  flex-wrap: wrap;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  @include small-text;
+  color: $color-gray;
+}
+
+.pageSizeSelect {
+  padding: $spacing-xs $spacing-md;
+  border: 1px solid $color-gray-lighter;
+  border-radius: $radius-sm;
+  background-color: rgba($color-navy, 0.05);
+  color: $color-navy;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  appearance: none;
+  
+  &:focus {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.navButton {
+  width: 32px;
+  height: 32px;
+  @include flex-center;
+  background-color: rgba($color-navy, 0.05);
+  border: 1px solid $color-gray-lighter;
+  border-radius: $radius-sm;
+  color: $color-gray;
+  cursor: pointer;
+  transition: all $transition-fast;
+  
+  &:hover:not(:disabled) {
+    background-color: $color-primary;
+    color: $color-white;
+    border-color: $color-primary;
+  }
+  
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+}
+
+.pageNumbers {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.pageButton {
+  min-width: 32px;
+  height: 32px;
+  padding: 0 $spacing-sm;
+  @include flex-center;
+  background: none;
+  border: none;
+  color: $color-gray;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-normal;
+  cursor: pointer;
+  border-radius: $radius-sm;
+  transition: all $transition-fast;
+  
+  &:hover {
+    background-color: rgba($color-primary, 0.1);
+    color: $color-navy;
+  }
+}
+
+.pageButtonActive {
+  background-color: rgba($color-primary, 0.1);
+  color: $color-primary;
+  font-weight: $font-weight-medium;
+}
+
+.ellipsis {
+  padding: 0 $spacing-xs;
+  color: $color-gray;
+}
+

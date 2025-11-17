@@ -1,0 +1,50 @@
+/**
+ * Dashboard Page Styles
+ */
+
+.dashboard {
+  width: 100%;
+  max-width: $container-max-width;
+}
+
+.pageTitle {
+  @include heading-2;
+  margin-bottom: $spacing-2xl;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: $spacing-lg;
+  margin-bottom: $spacing-2xl;
+  
+  @include desktop {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.tableCard {
+  background-color: $color-white;
+  border-radius: $radius-md;
+  box-shadow: $shadow-md;
+  padding: $spacing-xl;
+  position: relative;
+  
+  @include mobile-only {
+    padding: $spacing-md;
+    overflow-x: auto;
+  }
+}
+
+.loadingContainer,
+.errorContainer {
+  @include flex-center;
+  min-height: 400px;
+}
+
+.errorMessage {
+  @include body-text;
+  color: $color-error;
+  text-align: center;
+}
+
