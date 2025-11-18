@@ -3,6 +3,8 @@
  * Includes responsive breakpoints, utilities, and reusable patterns
  */
 
+@use "./_variables.scss" as *;
+
 // Responsive Breakpoints (Mobile-First Approach)
 @mixin mobile {
   @media (min-width: $breakpoint-mobile) {

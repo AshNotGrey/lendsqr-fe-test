@@ -12,6 +12,8 @@ import { getUserById } from '@/services/user.service'
 import { getFromLocalStorage, setInLocalStorage } from '@/hooks/useLocalStorage'
 import type { IUser } from '@/types/user.types'
 import styles from './UserDetails.module.scss'
+import userPlaceholderIcon from '@/assets/icons/avatar-placeholder.svg'
+import backArrowIcon from '@/assets/icons/back-arrow.svg'
 
 type TabType = 'general' | 'documents' | 'bank' | 'loans' | 'savings' | 'app'
 
@@ -111,9 +113,7 @@ const UserDetails: React.FC = () => {
       <div className={styles.userDetails}>
         {/* Back Button */}
         <button className={styles.backButton} onClick={() => navigate('/dashboard')}>
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M12 5L7 10L12 15" stroke="currentColor" strokeWidth="2" />
-          </svg>
+          <img src={backArrowIcon} alt="" className={styles.backIcon} />
           <span>Back to Users</span>
         </button>
 
@@ -131,18 +131,10 @@ const UserDetails: React.FC = () => {
           <div className={styles.userHeader}>
             <div className={styles.userBasicInfo}>
               <div className={styles.avatar}>
-                {user.avatar ? (
-                  <img src={user.avatar} alt={user.fullName} />
-                ) : (
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <circle cx="20" cy="15" r="7" stroke="#213F7D" strokeWidth="2" />
-                    <path
-                      d="M8 32C8 25 13 22 20 22C27 22 32 25 32 32"
-                      stroke="#213F7D"
-                      strokeWidth="2"
-                    />
-                  </svg>
-                )}
+                <img 
+                  src={userPlaceholderIcon} 
+                  alt={user.fullName} 
+                />
               </div>
               <div className={styles.userInfo}>
                 <h2 className={styles.userName}>{user.fullName}</h2>

@@ -42,6 +42,11 @@
   }
 }
 
+.iconImage {
+  width: 24px;
+  height: 24px;
+}
+
 .label {
   @include label-text;
   color: $color-gray;

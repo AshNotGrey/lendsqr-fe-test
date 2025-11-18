@@ -13,9 +13,10 @@ import './styles/_global.scss'
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: 2,
+      retry: 1,
       refetchOnWindowFocus: false,
-      staleTime: 5 * 60 * 1000, // 5 minutes
+      staleTime: 0, // Always fetch fresh data to avoid cache interference during development
+      gcTime: 1000 * 60 * 5, // Keep unused data in cache for 5 minutes
     },
   },
 })

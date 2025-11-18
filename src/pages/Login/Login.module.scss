@@ -41,14 +41,9 @@
   }
 }
 
-.logoText {
-  font-size: $font-size-3xl;
-  font-weight: $font-weight-bold;
-  color: $color-navy;
-  
-  @include mobile-only {
-    font-size: $font-size-2xl;
-  }
+.logoImage {
+  height: 30px;
+  width: auto;
 }
 
 .illustration {

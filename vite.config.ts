@@ -5,6 +5,9 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  server: {
+    port: 5177,
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -22,7 +25,9 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "@/styles/_variables.scss"; @import "@/styles/_mixins.scss";`
+        additionalData: `@use "@/styles/_variables.scss" as *; @use "@/styles/_mixins.scss" as *;`,
+        api: 'modern-compiler',
+        silenceDeprecations: ['legacy-js-api', 'import']
       }
     }
   },

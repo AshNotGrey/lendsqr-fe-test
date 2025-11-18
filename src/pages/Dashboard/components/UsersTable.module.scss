@@ -10,18 +10,17 @@
 
 .table {
   width: 100%;
-  min-width: 900px;
   border-collapse: separate;
   border-spacing: 0;
+  table-layout: auto;
+  max-width: 100%;
   
   thead {
     tr {
-      border-bottom: 1px solid $color-gray-lighter;
-      
       th {
-        padding: $spacing-md $spacing-lg;
+        padding: $spacing-sm $spacing-md;
         text-align: left;
-        border-bottom: 1px solid $color-gray-lighter;
+        font-size: 0.87rem; // ~14px (20% larger than 12px)
       }
     }
   }
@@ -36,8 +35,9 @@
       }
       
       td {
-        padding: $spacing-lg;
-        @include small-text;
+        padding: $spacing-md;
+        font-size: 0.87rem; // ~14px (20% larger than 12px)
+        line-height: 1.4;
         color: $color-gray;
         border-bottom: 1px solid $color-gray-lighter;
       }
@@ -45,10 +45,16 @@
   }
 }
 
+.dateCell {
+  font-size: 0.84rem; // Match increased font size
+  white-space: nowrap;
+}
+
 .columnHeader {
   display: flex;
   align-items: center;
   gap: $spacing-sm;
+  min-width: 0;
   
   span {
     @include label-text;
@@ -73,6 +79,12 @@
 
 .actionCell {
   position: relative;
+  width: 50px;
+  text-align: center;
+}
+
+.statusCell {
+  width: 120px;
 }
 
 .actionButton {
@@ -126,5 +138,11 @@
       height: 16px;
     }
   }
+}
+
+.actionMenuIcon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
 }
 

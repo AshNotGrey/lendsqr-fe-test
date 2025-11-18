@@ -31,10 +31,9 @@
   margin-bottom: $spacing-2xl;
 }
 
-.logoText {
-  font-size: $font-size-2xl;
-  font-weight: $font-weight-bold;
-  color: $color-navy;
+.logoImage {
+  height: 30px;
+  width: auto;
 }
 
 .orgSwitcher {
@@ -124,9 +123,21 @@
     flex-shrink: 0;
   }
   
+  .navIcon {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+  }
+  
   span {
     flex: 1;
   }
+}
+
+.orgIcon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
 }
 
 .navLinkActive {

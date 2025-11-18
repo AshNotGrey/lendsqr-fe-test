@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/store/auth-context'
 import { Button, Input } from '@/components/common'
 import styles from './Login.module.scss'
+import logoIcon from '@/assets/icons/Lendsqr-logo.svg'
+import illustrationIcon from '@/assets/icons/login-illustration.svg'
 
 /**
  * Login page component
@@ -99,19 +101,16 @@ const Login: React.FC = () => {
       {/* Left side - Illustration */}
       <div className={styles.leftSection}>
         <div className={styles.logoContainer}>
-          <svg width="145" height="30" viewBox="0 0 145 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 30V0H7.5V22.5H15V30H0Z" fill="#213F7D"/>
-            <path d="M30 30H22.5V7.5H30V30Z" fill="#213F7D"/>
-            <path d="M45 22.5V7.5H52.5V22.5H60V30H37.5V22.5H45Z" fill="#213F7D"/>
-            <path d="M75 30V0H90V7.5H82.5V11.25H90V18.75H82.5V22.5H90V30H75Z" fill="#213F7D"/>
-            <path d="M105 30V0H120V30H105ZM112.5 22.5V7.5H112.5V22.5Z" fill="#213F7D"/>
-          </svg>
-          <span className={styles.logoText}>lendsqr</span>
+          <img 
+            src={logoIcon} 
+            alt="Lendsqr" 
+            className={styles.logoImage}
+          />
         </div>
         
         <div className={styles.illustration}>
           <img 
-            src="/login-illustration.svg" 
+            src={illustrationIcon} 
             alt="Lendsqr illustration" 
             className={styles.illustrationImage}
           />

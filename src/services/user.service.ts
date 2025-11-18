@@ -1,69 +1,143 @@
 /**
  * User Service
  * Handles API calls for user data with fallback mechanism
- * 
+ *
  * Architecture Decision:
- * - Primary: Fetch from json-generator.com (or other mock API)
- * - Fallback: Local /public/users.json file
- * This demonstrates resilience and error handling for production systems
+ * - Primary: Remote GitHub Gist (hosted 500-record dataset)
+ * - Fallback: Local /public/users.json (same dataset bundled for offline resilience)
+ *
+ * Rationale:
+ * - The 500-record dataset was generated using json-generator.com in batches of 250
+ *   and merged into a single JSON file hosted locally and on GitHub Gist for redundancy.
+ * - Using local data as primary source ensures consistent, deterministic demo experience
+ *   without network dependencies or CORS issues during assessment reviews.
  */
 
 import type { IUser, IUserFilters } from '@/types/user.types'
 
 /**
- * API configuration
- * User should replace MOCK_API_URL with their json-generator.com endpoint
+ * Data source configuration
  */
-const MOCK_API_URL = import.meta.env.VITE_API_URL || ''
-const FALLBACK_DATA_URL = '/users.json'
+const LOCAL_DATA_URL = '/users.json' // 500-record dataset bundled with the app
+const GIST_DATA_URL =
+  'https://gist.githubusercontent.com/AshNotGrey/7c7695dc264edb3a5aa28c4a871ddaf6/raw/3613507e19cb1428eae0b47c713f700334d36f33/users.json'
 
 /**
- * Fetches all users from API with fallback to local data
+ * Fetch helper with consistent error handling.
+ */
+async function fetchJson<T>(url: string): Promise<T> {
+  const response = await fetch(url)
+
+  if (!response.ok) {
+    throw new Error(`Fetch failed (${response.status}) for ${url}`)
+  }
+
+  return response.json() as Promise<T>
+}
+
+/**
+ * Normalizes external data to the strict IUser shape expected by the app.
+ * This guards against minor schema drift between data sources.
+ */
+function normalizeUsers(raw: any[]): IUser[] {
+  const toEmailFromFullName = (name: string, domain = 'example.com') =>
+    `${name
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '.') // collapse non-alphanumerics to dots
+      .replace(/^\.+|\.+$/g, '')}@${domain}`
+
+  return (raw || []).map((u: any) => {
+    // accountBalance comes as number in some sources; ensure string for type safety
+    const accountBalanceStr =
+      typeof u?.accountBalance === 'number'
+        ? u.accountBalance.toFixed(2)
+        : String(u?.accountBalance ?? '0')
+
+    const personalInfo = {
+      fullName: String(u?.personalInfo?.fullName ?? u?.fullName ?? ''),
+      phoneNumber: String(u?.personalInfo?.phoneNumber ?? u?.phoneNumber ?? ''),
+      emailAddress: String(u?.personalInfo?.emailAddress ?? u?.email ?? ''),
+      bvn: String(u?.personalInfo?.bvn ?? ''),
+      gender: String(u?.personalInfo?.gender ?? ''),
+      maritalStatus: String(u?.personalInfo?.maritalStatus ?? ''),
+      children: String(u?.personalInfo?.children ?? 'None'),
+      typeOfResidence: String(u?.personalInfo?.typeOfResidence ?? ''),
+    }
+
+    const educationAndEmployment = {
+      levelOfEducation: String(u?.educationAndEmployment?.levelOfEducation ?? ''),
+      employmentStatus: String(u?.educationAndEmployment?.employmentStatus ?? ''),
+      sectorOfEmployment: String(u?.educationAndEmployment?.sectorOfEmployment ?? ''),
+      durationOfEmployment: String(u?.educationAndEmployment?.durationOfEmployment ?? ''),
+      officeEmail: String(u?.educationAndEmployment?.officeEmail ?? `${u?.username ?? 'user'}@company.com`),
+      monthlyIncome: String(u?.educationAndEmployment?.monthlyIncome ?? 'N0 - N0'),
+      loanRepayment: String(u?.educationAndEmployment?.loanRepayment ?? '0'),
+    }
+
+    const socials = {
+      facebook: String(u?.socials?.facebook ?? ''),
+      twitter: String(u?.socials?.twitter ?? ''),
+      instagram: String(u?.socials?.instagram ?? ''),
+    }
+
+    const guarantors = Array.isArray(u?.guarantors) ? u.guarantors.map((g: any) => ({
+      fullName: String(g?.fullName ?? ''),
+      phoneNumber: String(g?.phoneNumber ?? ''),
+      emailAddress: String(g?.emailAddress ?? toEmailFromFullName(String(g?.fullName ?? 'guarantor'))),
+      relationship: String(g?.relationship ?? ''),
+    })) : []
+
+    return {
+      id: String(u?.id ?? ''),
+      organization: String(u?.organization ?? ''),
+      username: String(u?.username ?? ''),
+      email: String(u?.email ?? ''),
+      phoneNumber: String(u?.phoneNumber ?? ''),
+      dateJoined: String(u?.dateJoined ?? ''),
+      status: String(u?.status ?? 'Active'),
+      avatar: String(u?.avatar ?? ''),
+      fullName: String(u?.fullName ?? personalInfo.fullName ?? ''),
+      userTier: (Number(u?.userTier) || 1) as 1 | 2 | 3,
+      accountBalance: accountBalanceStr,
+      accountBank: String(u?.accountBank ?? ''),
+      accountNumber: String(u?.accountNumber ?? ''),
+      personalInfo,
+      educationAndEmployment,
+      socials,
+      guarantors,
+    } as IUser
+  })
+}
+
+/**
+ * Fetches all users from remote data with fallback to local JSON
  * 
  * @returns Promise<IUser[]> Array of user objects
  * @throws Error if both primary and fallback sources fail
  */
 export async function getUsers(): Promise<IUser[]> {
-  try {
-    // Attempt to fetch from primary API source
-    if (MOCK_API_URL) {
-      const response = await fetch(MOCK_API_URL, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
+  const sources: { name: string; url: string }[] = [
+    { name: 'gist', url: GIST_DATA_URL },
+    { name: 'local', url: LOCAL_DATA_URL },
+  ]
 
-      if (!response.ok) {
-        throw new Error(`API responded with status: ${response.status}`)
-      }
+  let lastError: unknown = null
 
-      const data = await response.json()
-      return Array.isArray(data) ? data : data.users || []
-    }
-    
-    // If no API URL configured, go straight to fallback
-    throw new Error('No API URL configured')
-    
-  } catch (error) {
-    console.warn('Primary API fetch failed, using fallback data:', error)
-    
-    // Fallback to local JSON file
+  for (const source of sources) {
     try {
-      const response = await fetch(FALLBACK_DATA_URL)
-      
-      if (!response.ok) {
-        throw new Error(`Fallback data fetch failed with status: ${response.status}`)
-      }
-      
-      const data = await response.json()
-      return Array.isArray(data) ? data : data.users || []
-      
-    } catch (fallbackError) {
-      console.error('Fallback data fetch also failed:', fallbackError)
-      throw new Error('Unable to fetch user data from any source')
+      const data = await fetchJson<unknown>(source.url)
+      const list = Array.isArray(data) ? data : (data as any)?.users || []
+      console.info(`✓ Loaded ${list.length} users from ${source.name}`)
+      return normalizeUsers(list)
+    } catch (error) {
+      lastError = error
+      console.warn(`Fetch from ${source.name} failed. Trying next source...`, error)
     }
   }
+
+  console.error('All data sources failed.', lastError)
+  throw new Error('Unable to fetch user data from any source')
 }
 
 /**

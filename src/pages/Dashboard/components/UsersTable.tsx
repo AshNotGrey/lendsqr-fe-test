@@ -7,6 +7,9 @@ import React, { useState } from 'react'
 import { StatusBadge } from '@/components/common'
 import type { IUser } from '@/types/user.types'
 import styles from './UsersTable.module.scss'
+import viewDetailsIcon from '@/assets/icons/eye.svg'
+import blacklistUserIcon from '@/assets/icons/blacklist-user.svg'
+import activateUserIcon from '@/assets/icons/activate-user.svg'
 
 export interface UsersTableProps {
   users: IUser[]
@@ -134,8 +137,8 @@ const UsersTable: React.FC<UsersTableProps> = ({
               <td>{user.username}</td>
               <td>{user.email}</td>
               <td>{user.phoneNumber}</td>
-              <td>{formatDate(user.dateJoined)}</td>
-              <td>
+              <td className={styles.dateCell}>{formatDate(user.dateJoined)}</td>
+              <td className={styles.statusCell}>
                 <StatusBadge status={user.status} />
               </td>
               <td>
@@ -146,7 +149,7 @@ const UsersTable: React.FC<UsersTableProps> = ({
                     aria-label="User actions"
                     aria-expanded={activeMenuId === user.id}
                   >
-                    <svg width="4" height="16" viewBox="0 0 4 16" fill="none">
+                    <svg width="3" height="16" viewBox="0 0 4 16" fill="none">
                       <circle cx="2" cy="2" r="2" fill="currentColor"/>
                       <circle cx="2" cy="8" r="2" fill="currentColor"/>
                       <circle cx="2" cy="14" r="2" fill="currentColor"/>
@@ -156,22 +159,15 @@ const UsersTable: React.FC<UsersTableProps> = ({
                   {activeMenuId === user.id && (
                     <div className={styles.actionMenu}>
                       <button onClick={() => handleViewDetails(user.id)}>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                          <path d="M8 3C4.5 3 1.5 6 1 8c.5 2 3.5 5 7 5s6.5-3 7-5c-.5-2-3.5-5-7-5z" stroke="currentColor"/>
-                          <circle cx="8" cy="8" r="2" stroke="currentColor"/>
-                        </svg>
+                        <img src={viewDetailsIcon} alt="" className={styles.actionMenuIcon} />
                         View Details
                       </button>
                       <button onClick={() => handleBlacklist(user.id)}>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                          <path d="M2 2L14 14M14 2L2 14" stroke="currentColor"/>
-                        </svg>
+                        <img src={blacklistUserIcon} alt="" className={styles.actionMenuIcon} />
                         Blacklist User
                       </button>
                       <button onClick={() => handleActivate(user.id)}>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                          <path d="M3 8l3 3L13 4" stroke="currentColor" strokeWidth="2"/>
-                        </svg>
+                        <img src={activateUserIcon} alt="" className={styles.actionMenuIcon} />
                         Activate User
                       </button>
                     </div>

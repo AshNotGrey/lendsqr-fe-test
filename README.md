@@ -86,7 +86,7 @@ cp .env.example .env
 npm run dev
 ```
 
-The application will be available at `http://localhost:5173`
+The application will be available at `http://localhost:5177`
 
 ### Building for Production
 
@@ -156,17 +156,29 @@ All core components and pages include comprehensive tests:
 - ✅ Dashboard page (data fetching, filtering, pagination)
 - ✅ UserDetails page (data display, localStorage caching)
 
+## 📊 Mock Data Generation
+
+The 500-user dataset (`public/users.json`) was generated using [JSON Generator](https://next.json-generator.com/):
+
+1. **Generation Process:**
+   - Created a custom template matching the `IUser` interface
+   - Generated 500 records in two batches of 250 (platform limit)
+   - Merged batches into a single JSON array
+
+2. **Data Distribution:**
+   - Local: `public/users.json` (primary source)
+   - Remote: [GitHub Gist](https://gist.githubusercontent.com/AshNotGrey/7c7695dc264edb3a5aa28c4a871ddaf6) (backup)
+
+3. **Schema Adherence:**
+   - All fields strictly typed per `IUser` interface
+   - Nigerian-centric data (NGN currency, local banks, phone formats)
+   - Realistic relationships between nested objects (guarantors, employment, etc.)
+
 ## 🔐 Environment Variables
 
-Create a `.env` file in the root directory:
-
-```env
-# API Configuration
-# Replace with your json-generator.com API URL or custom mock API
-VITE_API_URL=https://api.json-generator.com/templates/YOUR_TEMPLATE_ID/data
-
-# If VITE_API_URL is not set, the app uses /public/users.json as fallback
-```
+No environment variables are required. The app automatically fetches the
+remote GitHub Gist first and falls back to the bundled `public/users.json`
+file if the network request fails.
 
 ## 🎯 Design Decisions
 
@@ -186,10 +198,10 @@ For detailed architectural decisions and rationale, see [TECHNICAL_DECISIONS.md]
    - Instant load on return visits
    - Demonstrates client-side data persistence
 
-4. **Fallback Data Strategy**
-   - Primary: json-generator.com API
-   - Fallback: Local JSON file
-   - Ensures resilience
+4. **Data Strategy**
+   - Primary: Local JSON file (500 records)
+   - Generated via json-generator.com in batches of 250
+   - Ensures consistent, deterministic demo experience
 
 ## 📝 Scripts
 
