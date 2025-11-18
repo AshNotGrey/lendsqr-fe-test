@@ -1,5 +1,6 @@
 /**
  * Pagination Component Styles
+ * Mobile-optimized with vertical stacking
  */
 
 .pagination {
@@ -8,6 +9,14 @@
   margin-top: $spacing-xl;
   gap: $spacing-lg;
   flex-wrap: wrap;
+  
+  @include mobile-only {
+    flex-direction: column;
+    align-items: center;
+    padding-top: $spacing-lg;
+    margin-top: $spacing-lg;
+    gap: $spacing-md;
+  }
 }
 
 .info {
@@ -16,6 +25,12 @@
   gap: $spacing-sm;
   @include small-text;
   color: $color-gray;
+  
+  @include mobile-only {
+    font-size: 0.75rem;
+    justify-content: center;
+    text-align: center;
+  }
 }
 
 .pageSizeSelect {
@@ -27,6 +42,13 @@
   font-weight: $font-weight-medium;
   cursor: pointer;
   appearance: none;
+  font-size: $font-size-sm;
+  
+  @include mobile-only {
+    padding: $spacing-xs $spacing-sm;
+    font-size: 0.75rem;
+    min-height: $min-touch-target;
+  }
   
   &:focus {
     outline: 2px solid $color-primary;
@@ -38,6 +60,10 @@
   display: flex;
   align-items: center;
   gap: $spacing-md;
+  
+  @include mobile-only {
+    gap: $spacing-sm;
+  }
 }
 
 .navButton {
@@ -50,6 +76,17 @@
   color: $color-gray;
   cursor: pointer;
   transition: all $transition-fast;
+  flex-shrink: 0;
+  
+  @include mobile-only {
+    width: 36px;
+    height: 36px;
+    
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
   
   &:hover:not(:disabled) {
     background-color: $color-primary;
@@ -67,6 +104,10 @@
   display: flex;
   align-items: center;
   gap: $spacing-sm;
+  
+  @include mobile-only {
+    gap: 2px;
+  }
 }
 
 .pageButton {
@@ -82,6 +123,14 @@
   cursor: pointer;
   border-radius: $radius-sm;
   transition: all $transition-fast;
+  flex-shrink: 0;
+  
+  @include mobile-only {
+    min-width: 36px;
+    height: 36px;
+    padding: 0 $spacing-xs;
+    font-size: 0.75rem;
+  }
   
   &:hover {
     background-color: rgba($color-primary, 0.1);
@@ -98,5 +147,9 @@
 .ellipsis {
   padding: 0 $spacing-xs;
   color: $color-gray;
+  
+  @include mobile-only {
+    padding: 0 2px;
+  }
 }
 

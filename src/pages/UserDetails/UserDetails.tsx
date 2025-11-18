@@ -154,45 +154,24 @@ const UserDetails: React.FC = () => {
               </p>
             </div>
           </div>
-
           {/* Tabs */}
           <div className={styles.tabs}>
-            <button
-              className={`${styles.tab} ${activeTab === 'general' ? styles.tabActive : ''}`}
-              onClick={() => setActiveTab('general')}
-            >
-              General Details
-            </button>
-            <button
-              className={`${styles.tab} ${activeTab === 'documents' ? styles.tabActive : ''}`}
-              onClick={() => setActiveTab('documents')}
-            >
-              Documents
-            </button>
-            <button
-              className={`${styles.tab} ${activeTab === 'bank' ? styles.tabActive : ''}`}
-              onClick={() => setActiveTab('bank')}
-            >
-              Bank Details
-            </button>
-            <button
-              className={`${styles.tab} ${activeTab === 'loans' ? styles.tabActive : ''}`}
-              onClick={() => setActiveTab('loans')}
-            >
-              Loans
-            </button>
-            <button
-              className={`${styles.tab} ${activeTab === 'savings' ? styles.tabActive : ''}`}
-              onClick={() => setActiveTab('savings')}
-            >
-              Savings
-            </button>
-            <button
-              className={`${styles.tab} ${activeTab === 'app' ? styles.tabActive : ''}`}
-              onClick={() => setActiveTab('app')}
-            >
-              App and System
-            </button>
+            {[
+              { id: 'general', label: 'General Details' },
+              { id: 'documents', label: 'Documents' },
+              { id: 'bank', label: 'Bank Details' },
+              { id: 'loans', label: 'Loans' },
+              { id: 'savings', label: 'Savings' },
+              { id: 'app', label: 'App and System' },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                className={`${styles.tab} ${activeTab === tab.id ? styles.tabActive : ''}`}
+                onClick={() => setActiveTab(tab.id as TabType)}
+              >
+                {tab.label}
+              </button>
+            ))}
           </div>
         </div>
 
@@ -318,6 +297,7 @@ const UserDetails: React.FC = () => {
             ))}
           </div>
         )}
+         
 
         {/* Other tabs - Placeholder content */}
         {activeTab !== 'general' && (

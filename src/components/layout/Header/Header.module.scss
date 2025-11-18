@@ -1,5 +1,6 @@
 /**
  * Header Component Styles
+ * Includes hamburger menu button for mobile
  */
 
 .header {
@@ -14,6 +15,7 @@
   
   @include mobile-only {
     left: 0;
+    height: 70px; // Reduce header height on mobile
   }
 }
 
@@ -22,6 +24,60 @@
   padding: 0 $spacing-xl;
   @include flex-between;
   gap: $spacing-xl;
+  
+  @include mobile-only {
+    padding: 0 $spacing-md;
+    gap: $spacing-md;
+  }
+}
+
+// Hamburger menu button (mobile only)
+.hamburgerButton {
+  display: none;
+  width: $min-touch-target;
+  height: $min-touch-target;
+  @include flex-center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-direction: column;
+  gap: 4px;
+  
+  @include mobile-only {
+    display: flex;
+  }
+  
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.hamburgerIcon {
+  width: 20px;
+  height: 2px;
+  background-color: $color-navy;
+  border-radius: 2px;
+  transition: all $transition-fast;
+  
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 2px;
+    background-color: $color-navy;
+    border-radius: 2px;
+    transition: all $transition-fast;
+  }
+  
+  &::before {
+    transform: translateY(-6px);
+  }
+  
+  &::after {
+    transform: translateY(4px);
+  }
 }
 
 .searchForm {
@@ -32,7 +88,8 @@
   height: 40px;
   
   @include mobile-only {
-    max-width: 200px;
+    max-width: 150px;
+    height: 36px;
   }
 }
 
@@ -54,6 +111,15 @@
   
   &::placeholder {
     color: $color-gray-light;
+    
+    @include mobile-only {
+      font-size: 0.75rem;
+    }
+  }
+  
+  @include mobile-only {
+    padding: 0 $spacing-sm;
+    font-size: 0.75rem;
   }
 }
 
@@ -70,6 +136,16 @@
   
   &:hover {
     background-color: $color-primary-dark;
+  }
+  
+  @include mobile-only {
+    min-width: 40px;
+    padding: 0 $spacing-sm;
+    
+    svg {
+      width: 12px;
+      height: 12px;
+    }
   }
 }
 
@@ -151,6 +227,12 @@
   font-weight: $font-weight-semibold;
   font-size: $font-size-base;
   overflow: hidden;
+  
+  @include mobile-only {
+    width: 32px;
+    height: 32px;
+    font-size: $font-size-sm;
+  }
 }
 
 .avatarImage {

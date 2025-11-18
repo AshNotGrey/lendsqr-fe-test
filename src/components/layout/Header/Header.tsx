@@ -1,6 +1,7 @@
 /**
  * Header Component
  * Top navigation bar with search and user profile
+ * Includes hamburger menu trigger for mobile navigation
  */
 
 import React, { useState } from 'react'
@@ -9,7 +10,11 @@ import styles from './Header.module.scss'
 import avatarIcon from '@/assets/icons/avatar.png'
 import notificationBellIcon from '@/assets/icons/notification-bell.svg'
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onMenuToggle: () => void
+}
+
+const Header: React.FC<HeaderProps> = ({ onMenuToggle }) => {
   const { userEmail } = useAuth()
   const [searchQuery, setSearchQuery] = useState('')
 
@@ -22,6 +27,15 @@ const Header: React.FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.headerInner}>
+        {/* Hamburger Menu Button (Mobile Only) */}
+        <button 
+          className={styles.hamburgerButton}
+          onClick={onMenuToggle}
+          aria-label="Toggle menu"
+        >
+          <span className={styles.hamburgerIcon}></span>
+        </button>
+
         {/* Search Bar */}
         <form className={styles.searchForm} onSubmit={handleSearch}>
           <input

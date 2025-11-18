@@ -1,5 +1,6 @@
 /**
  * Dashboard Page Styles
+ * Mobile-optimized with responsive grid
  */
 
 .dashboard {
@@ -10,6 +11,11 @@
 .pageTitle {
   @include heading-2;
   margin-bottom: $spacing-2xl;
+  
+  @include mobile-only {
+    font-size: $font-size-2xl;
+    margin-bottom: $spacing-lg;
+  }
 }
 
 .statsGrid {
@@ -17,6 +23,12 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: $spacing-lg;
   margin-bottom: $spacing-2xl;
+  
+  @include mobile-only {
+    grid-template-columns: repeat(2, 1fr); // 2 columns on mobile
+    gap: $spacing-md;
+    margin-bottom: $spacing-lg;
+  }
   
   @include desktop {
     grid-template-columns: repeat(4, 1fr);
@@ -32,7 +44,8 @@
   
   @include mobile-only {
     padding: $spacing-md;
-    overflow-x: auto;
+    border-radius: $radius-sm;
+    overflow-x: hidden; // Prevent card from causing page overflow
   }
 }
 

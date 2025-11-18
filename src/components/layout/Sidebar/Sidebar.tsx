@@ -2,6 +2,7 @@
  * Sidebar Component
  * Main navigation sidebar for the dashboard
  * Based on Figma design
+ * Supports mobile overlay with hamburger menu
  */
 
 import React from 'react'
@@ -33,7 +34,12 @@ import systemMsgsIcon from '@/assets/icons/sidebar-icons/system-msgs.svg'
 import logoutIcon from '@/assets/icons/sidebar-icons/logout.svg'
 import { useAuth } from '@/store/auth-context'
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  isOpen: boolean
+  onClose: () => void
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   const navigate = useNavigate()
   const { logout } = useAuth()
 
@@ -48,16 +54,37 @@ const Sidebar: React.FC = () => {
   }
 
   return (
-    <aside className={styles.sidebar}>
-      <div className={styles.sidebarInner}>
-        {/* Logo */}
-        <div className={styles.logo}>
-          <img 
-            src={logoIcon} 
-            alt="Lendsqr" 
-            className={styles.logoImage}
-          />
-        </div>
+    <>
+      {/* Mobile backdrop */}
+      {isOpen && (
+        <div 
+          className={styles.backdrop} 
+          onClick={onClose}
+          aria-hidden="true"
+        />
+      )}
+      
+      <aside className={`${styles.sidebar} ${isOpen ? styles.sidebarOpen : ''}`}>
+        <div className={styles.sidebarInner}>
+          {/* Mobile close button */}
+          <button 
+            className={styles.closeButton}
+            onClick={onClose}
+            aria-label="Close menu"
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+          </button>
+
+          {/* Logo */}
+          <div className={styles.logo}>
+            <img 
+              src={logoIcon} 
+              alt="Lendsqr" 
+              className={styles.logoImage}
+            />
+          </div>
 
         {/* Organization Switcher */}
         <div className={styles.orgSwitcher}>
@@ -196,6 +223,7 @@ const Sidebar: React.FC = () => {
         </div>
       </div>
     </aside>
+    </>
   )
 }
 

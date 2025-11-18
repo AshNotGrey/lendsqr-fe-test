@@ -1,11 +1,21 @@
 /**
  * UsersTable Component Styles
+ * Mobile-optimized with horizontal scroll
  */
 
 .tableWrapper {
   width: 100%;
   overflow-x: auto;
   @include custom-scrollbar;
+  -webkit-overflow-scrolling: touch; // Smooth scrolling on iOS
+  
+  @include mobile-only {
+    // Prevent page overflow - make table scroll independently
+    max-width: 100%;
+    overflow-x: scroll;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 .table {
@@ -13,7 +23,12 @@
   border-collapse: separate;
   border-spacing: 0;
   table-layout: auto;
-  max-width: 100%;
+  min-width: 900px; // Ensure table doesn't crush on mobile
+  
+  @include mobile-only {
+    min-width: 800px;
+    font-size: 0.8rem; // Reduce slightly for mobile
+  }
   
   thead {
     tr {
@@ -21,6 +36,23 @@
         padding: $spacing-sm $spacing-md;
         text-align: left;
         font-size: 0.87rem; // ~14px (20% larger than 12px)
+        min-width: 120px; // Prevent column crushing
+        white-space: nowrap;
+        
+        @include mobile-only {
+          padding: $spacing-sm;
+          font-size: 0.75rem;
+          min-width: 100px;
+        }
+        
+        // Specific column widths
+        &:nth-child(1) { min-width: 140px; } // Organization
+        &:nth-child(2) { min-width: 120px; } // Username
+        &:nth-child(3) { min-width: 180px; } // Email
+        &:nth-child(4) { min-width: 140px; } // Phone
+        &:nth-child(5) { min-width: 160px; } // Date
+        &:nth-child(6) { min-width: 100px; } // Status
+        &:nth-child(7) { min-width: 50px; }  // Actions
       }
     }
   }
@@ -40,6 +72,12 @@
         line-height: 1.4;
         color: $color-gray;
         border-bottom: 1px solid $color-gray-lighter;
+        white-space: nowrap;
+        
+        @include mobile-only {
+          padding: $spacing-sm;
+          font-size: 0.8rem;
+        }
       }
     }
   }
@@ -48,6 +86,13 @@
 .dateCell {
   font-size: 0.84rem; // Match increased font size
   white-space: nowrap;
+  
+  @include mobile-only {
+    font-size: 0.75rem;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .columnHeader {
@@ -59,6 +104,11 @@
   span {
     @include label-text;
     white-space: nowrap;
+    
+    @include mobile-only {
+      font-size: 0.65rem;
+      letter-spacing: 0.3px;
+    }
   }
 }
 
@@ -71,6 +121,16 @@
   display: flex;
   align-items: center;
   transition: color $transition-fast;
+  flex-shrink: 0;
+  
+  @include mobile-only {
+    padding: 2px;
+    
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
   
   &:hover {
     color: $color-navy;
@@ -114,6 +174,12 @@
   min-width: 180px;
   padding: $spacing-sm 0;
   
+  @include mobile-only {
+    right: auto;
+    left: -160px; // Position to left on mobile to stay in viewport
+    min-width: 160px;
+  }
+  
   button {
     width: 100%;
     display: flex;
@@ -127,6 +193,13 @@
     color: $color-navy;
     cursor: pointer;
     transition: background-color $transition-fast;
+    white-space: nowrap;
+    
+    @include mobile-only {
+      padding: $spacing-sm $spacing-md;
+      gap: $spacing-sm;
+      font-size: 0.75rem;
+    }
     
     &:hover {
       background-color: $color-gray-bg;

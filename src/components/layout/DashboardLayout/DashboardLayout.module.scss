@@ -25,6 +25,7 @@
   padding: $spacing-2xl;
   
   @include mobile-only {
+    margin-top: 70px; // Match reduced mobile header height
     padding: $spacing-md;
   }
 }

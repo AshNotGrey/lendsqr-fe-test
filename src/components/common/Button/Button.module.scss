@@ -6,6 +6,11 @@
 .button {
   @include button-base;
   position: relative;
+  min-height: $min-touch-target;
+  
+  @include mobile-only {
+    font-size: $font-size-sm;
+  }
   
   &:focus-visible {
     @include focus-visible;

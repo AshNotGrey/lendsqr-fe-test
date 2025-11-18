@@ -6,6 +6,10 @@
 .userDetails {
   width: 100%;
   max-width: $container-max-width;
+  
+  @include mobile-only {
+    overflow-x: hidden; // Prevent horizontal overflow
+  }
 }
 
 .backButton {
@@ -20,6 +24,13 @@
   cursor: pointer;
   margin-bottom: $spacing-2xl;
   transition: color $transition-fast;
+  min-height: $min-touch-target;
+  justify-content: flex-start;
+  
+  @include mobile-only {
+    margin-bottom: $spacing-lg;
+    font-size: 0.8rem;
+  }
   
   &:hover {
     color: $color-navy;
@@ -37,11 +48,21 @@
   margin-bottom: $spacing-2xl;
   gap: $spacing-lg;
   flex-wrap: wrap;
+  
+  @include mobile-only {
+    margin-bottom: $spacing-lg;
+    gap: $spacing-md;
+  }
 }
 
 .pageTitle {
   @include heading-2;
   margin-bottom: 0;
+  
+  @include mobile-only {
+    font-size: $font-size-xl;
+    width: 100%;
+  }
 }
 
 .actions {
@@ -50,9 +71,12 @@
   
   @include mobile-only {
     width: 100%;
+    gap: $spacing-sm;
     
     button {
       flex: 1;
+      font-size: 0.7rem;
+      padding: $spacing-sm $spacing-md;
     }
   }
 }
@@ -63,6 +87,11 @@
   border-radius: $radius-md;
   box-shadow: $shadow-md;
   margin-bottom: $spacing-2xl;
+  
+  @include mobile-only {
+    margin-bottom: $spacing-lg;
+    border-radius: $radius-sm;
+  }
 }
 
 .userHeader {
@@ -74,11 +103,13 @@
   
   @include mobile-only {
     grid-template-columns: 1fr;
-    gap: $spacing-xl;
+    gap: $spacing-lg;
+    padding: $spacing-md;
   }
   
   @include tablet-only {
     grid-template-columns: 1fr 1fr;
+    gap: $spacing-lg;
   }
 }
 
@@ -86,6 +117,10 @@
   display: flex;
   align-items: center;
   gap: $spacing-lg;
+  
+  @include mobile-only {
+    gap: $spacing-md;
+  }
 }
 
 .avatar {
@@ -96,6 +131,11 @@
   background-color: rgba($color-navy, 0.08);
   @include flex-center;
   flex-shrink: 0;
+  
+  @include mobile-only {
+    width: 70px;
+    height: 70px;
+  }
   
   img {
     width: 60%;
@@ -119,10 +159,18 @@
   font-size: $font-size-2xl;
   font-weight: $font-weight-medium;
   color: $color-navy;
+  
+  @include mobile-only {
+    font-size: $font-size-lg;
+  }
 }
 
 .userId {
   @include small-text;
+  
+  @include mobile-only {
+    font-size: 0.75rem;
+  }
 }
 
 .userTier {
@@ -136,7 +184,12 @@
     padding-left: 0;
     border-left: none;
     border-top: 1px solid $color-gray-lighter;
-    padding-top: $spacing-lg;
+    padding-top: $spacing-md;
+  }
+  
+  @include tablet-only {
+    border-left: none;
+    padding-left: 0;
   }
 }
 
@@ -159,11 +212,15 @@
   @include mobile-only {
     padding-left: 0;
     border-left: none;
+    border-top: 1px solid $color-gray-lighter;
+    padding-top: $spacing-md;
   }
   
   @include tablet-only {
     border-left: none;
     padding-left: 0;
+    border-top: 1px solid $color-gray-lighter;
+    padding-top: $spacing-md;
   }
 }
 
@@ -171,11 +228,19 @@
   font-size: $font-size-2xl;
   font-weight: $font-weight-semibold;
   color: $color-navy;
+  
+  @include mobile-only {
+    font-size: $font-size-lg;
+  }
 }
 
 .accountInfo {
   @include small-text;
   font-size: $font-size-xs;
+  
+  @include mobile-only {
+    font-size: 0.7rem;
+  }
 }
 
 // Tabs
@@ -184,11 +249,15 @@
   gap: $spacing-2xl;
   padding: 0 $spacing-2xl;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   @include custom-scrollbar;
   
   @include mobile-only {
-    gap: $spacing-lg;
+    gap: $spacing-md;
     padding: 0 $spacing-md;
+    margin: 0 -$spacing-md;
+    padding-left: $spacing-md;
+    padding-right: $spacing-md;
   }
 }
 
@@ -203,6 +272,12 @@
   cursor: pointer;
   white-space: nowrap;
   transition: all $transition-fast;
+  min-height: $min-touch-target;
+  
+  @include mobile-only {
+    font-size: 0.75rem;
+    padding: $spacing-md 0;
+  }
   
   &:hover {
     color: $color-navy;
@@ -223,7 +298,10 @@
   padding: $spacing-2xl;
   
   @include mobile-only {
-    padding: $spacing-md;
+    padding: $spacing-lg $spacing-md;
+    border-radius: $radius-sm;
+    overflow-x: auto;
+    max-width: 100%;
   }
 }
 
@@ -231,6 +309,11 @@
   padding-bottom: $spacing-2xl;
   margin-bottom: $spacing-2xl;
   border-bottom: 1px solid $color-gray-lighter;
+  
+  @include mobile-only {
+    padding-bottom: $spacing-xl;
+    margin-bottom: $spacing-xl;
+  }
   
   &:last-child {
     border-bottom: none;
@@ -244,6 +327,11 @@
   font-weight: $font-weight-medium;
   color: $color-navy;
   margin-bottom: $spacing-xl;
+  
+  @include mobile-only {
+    font-size: $font-size-sm;
+    margin-bottom: $spacing-lg;
+  }
 }
 
 .infoGrid {
@@ -266,12 +354,21 @@
 .infoLabel {
   @include label-text;
   color: $color-gray;
+  
+  @include mobile-only {
+    font-size: 0.65rem;
+  }
 }
 
 .infoValue {
   @include small-text;
   color: $color-gray;
   font-weight: $font-weight-normal;
+  word-break: break-word;
+  
+  @include mobile-only {
+    font-size: 0.8rem;
+  }
 }
 
 .placeholderText {

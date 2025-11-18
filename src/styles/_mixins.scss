@@ -268,3 +268,44 @@
   text-transform: capitalize;
 }
 
+// Hamburger menu animation
+@mixin hamburger-icon {
+  width: 24px;
+  height: 2px;
+  background-color: $color-navy;
+  position: relative;
+  transition: all $transition-base;
+  
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: $color-navy;
+    transition: all $transition-base;
+  }
+  
+  &::before {
+    top: -7px;
+  }
+  
+  &::after {
+    top: 7px;
+  }
+}
+
+// Slide-in animation for sidebar
+@mixin slide-in-left {
+  animation: slideInLeft $transition-base ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+

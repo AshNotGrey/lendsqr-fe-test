@@ -23,6 +23,11 @@
 
 .input {
   @include input-field;
+  min-height: $min-touch-target;
+  
+  @include mobile-only {
+    font-size: 1rem; // Prevents zoom on iOS
+  }
   
   &--error {
     border-color: $color-error;
@@ -56,6 +61,12 @@
   cursor: pointer;
   padding: $spacing-xs;
   transition: color $transition-fast;
+  min-width: 44px;
+  min-height: 44px;
+  
+  @include mobile-only {
+    right: $spacing-sm;
+  }
   
   &:hover {
     color: $color-primary-dark;

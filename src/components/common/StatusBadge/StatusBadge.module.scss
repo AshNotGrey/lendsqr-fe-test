@@ -14,6 +14,11 @@
   text-transform: capitalize;
   white-space: nowrap;
   
+  @include mobile-only {
+    font-size: 0.7rem;
+    padding: 2px $spacing-sm;
+  }
+  
   // Active status - Green
   &--active {
     background-color: $color-success-bg;

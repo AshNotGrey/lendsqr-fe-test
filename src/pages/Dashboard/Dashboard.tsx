@@ -124,30 +124,20 @@ const Dashboard: React.FC = () => {
 
         {/* Statistics Cards */}
         <div className={styles.statsGrid}>
-          <StatCard
-            icon="users"
-            label="USERS"
-            value={stats.totalUsers.toLocaleString()}
-            color="pink"
-          />
-          <StatCard
-            icon="active-users"
-            label="ACTIVE USERS"
-            value={stats.activeUsers.toLocaleString()}
-            color="purple"
-          />
-          <StatCard
-            icon="loans"
-            label="USERS WITH LOANS"
-            value={stats.usersWithLoans.toLocaleString()}
-            color="orange"
-          />
-          <StatCard
-            icon="savings"
-            label="USERS WITH SAVINGS"
-            value={stats.usersWithSavings.toLocaleString()}
-            color="red"
-          />
+          {[
+            { icon: 'users', label: 'USERS', value: stats.totalUsers, color: 'pink' },
+            { icon: 'active-users', label: 'ACTIVE USERS', value: stats.activeUsers, color: 'purple' },
+            { icon: 'loans', label: 'USERS WITH LOANS', value: stats.usersWithLoans, color: 'orange' },
+            { icon: 'savings', label: 'USERS WITH SAVINGS', value: stats.usersWithSavings, color: 'red' },
+          ].map((stat) => (
+            <StatCard
+              key={stat.label}
+              icon={stat.icon as 'users' | 'active-users' | 'loans' | 'savings'}
+              label={stat.label}
+              value={stat.value.toLocaleString()}
+              color={stat.color as 'pink' | 'purple' | 'orange' | 'red'}
+            />
+          ))}
         </div>
 
         {/* Users Table */}

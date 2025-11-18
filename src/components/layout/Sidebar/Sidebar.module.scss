@@ -1,7 +1,20 @@
 /**
  * Sidebar Component Styles
- * Fixed sidebar navigation
+ * Fixed sidebar navigation with mobile overlay support
  */
+
+// Mobile backdrop overlay
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: $z-index-modal-backdrop;
+  display: none;
+  
+  @include mobile-only {
+    display: block;
+  }
+}
 
 .sidebar {
   width: $sidebar-width;
@@ -16,7 +29,16 @@
   @include custom-scrollbar;
   
   @include mobile-only {
-    display: none; // Hidden on mobile, would need hamburger menu
+    transform: translateX(-100%);
+    transition: transform $transition-base ease-in-out;
+    z-index: $z-index-modal;
+    box-shadow: $shadow-xl;
+  }
+}
+
+.sidebarOpen {
+  @include mobile-only {
+    transform: translateX(0);
   }
 }
 
@@ -25,6 +47,34 @@
   display: flex;
   flex-direction: column;
   min-height: 100%;
+}
+
+// Mobile close button
+.closeButton {
+  display: none;
+  position: absolute;
+  top: $spacing-lg;
+  right: $spacing-lg;
+  width: $min-touch-target;
+  height: $min-touch-target;
+  @include flex-center;
+  background: none;
+  border: none;
+  color: $color-navy;
+  cursor: pointer;
+  z-index: 10;
+  
+  @include mobile-only {
+    display: flex;
+  }
+  
+  &:hover {
+    color: $color-primary;
+  }
+  
+  &:active {
+    transform: scale(0.95);
+  }
 }
 
 .logo {
