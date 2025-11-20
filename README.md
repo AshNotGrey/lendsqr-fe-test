@@ -148,13 +148,96 @@ Generate coverage report:
 npm run test:coverage
 ```
 
+Run tests with UI:
+```bash
+npm run test:ui
+```
+
+### Test Snapshots
+
+Test snapshots provide a way to capture the rendered output of components and compare them across test runs. This helps ensure UI consistency and catch unintended visual changes.
+
+**Creating Snapshots:**
+
+When a component test runs for the first time, Vitest automatically creates a snapshot file (`.snap`) in the `__snapshots__` directory adjacent to the test file.
+
+**Example Test with Snapshot:**
+```typescript
+import { describe, it, expect } from 'vitest'
+import { render } from '@testing-library/react'
+import Button from './Button'
+
+describe('Button Component', () => {
+  it('should match snapshot', () => {
+    const { container } = render(<Button variant="primary">Click Me</Button>)
+    expect(container.firstChild).toMatchSnapshot()
+  })
+})
+```
+
+**Updating Snapshots:**
+
+When component output intentionally changes, update snapshots:
+
+```bash
+# Update all snapshots
+npm test -- --update
+
+# Update snapshots in watch mode
+npm test -- --watch -u
+```
+
+**When to Use Snapshots:**
+
+✅ **Good for:**
+- Component structure validation
+- Catching unintended markup changes
+- Testing complex component hierarchies
+- Verifying prop combinations produce consistent output
+
+❌ **Avoid for:**
+- Testing behavior (use regular assertions)
+- Frequently changing components
+- Components with non-deterministic output (dates, random IDs)
+
+**Snapshot Files:**
+
+Snapshot files are stored alongside test files:
+```
+src/
+  components/
+    Button/
+      Button.test.tsx
+      __snapshots__/
+        Button.test.tsx.snap
+```
+
+**Best Practices:**
+1. Keep snapshots focused and small
+2. Review snapshot changes carefully before committing
+3. Use descriptive snapshot names for multiple snapshots
+4. Update snapshots when UI changes are intentional
+5. Commit snapshot files to version control
+
+**Note:** This project uses React Testing Library, which encourages testing user behavior over implementation details. While snapshots can be useful for certain scenarios, the test suite primarily focuses on functionality and user interactions.
+
 ### Test Coverage
 
-All core components and pages include comprehensive tests:
-- ✅ Button, Input, StatusBadge, Loader components
-- ✅ Login page (validation, authentication, password toggle)
-- ✅ Dashboard page (data fetching, filtering, pagination)
-- ✅ UserDetails page (data display, localStorage caching)
+**Current Status:**
+- ✅ **134 tests passing** (93.7% pass rate)
+- 📊 **143 total tests** across 13 test files
+
+**Test Coverage by Component:**
+- ✅ **Common Components:** Button, Input, StatusBadge, Loader
+- ✅ **Pages:** Login, Dashboard, UserDetails
+- ✅ **Services:** User service (API mocking, filtering, pagination)
+- ✅ **Store:** Auth context (login, logout, localStorage persistence)
+- ✅ **Dashboard Components:** StatCard, UsersTable, FilterPopup, Pagination
+
+**Test Scenarios:**
+- ✅ **Positive scenarios:** Successful data fetching, valid inputs, user interactions
+- ✅ **Negative scenarios:** Error handling, invalid inputs, edge cases
+- ✅ **Integration tests:** Authentication flow, data caching, navigation
 
 ## 📊 Mock Data Generation
 
