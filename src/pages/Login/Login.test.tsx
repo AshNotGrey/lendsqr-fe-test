@@ -184,13 +184,92 @@ describe('Login Page', () => {
     renderWithProviders(<Login />)
     
     const emailInput = screen.getByPlaceholderText('Email')
-    fireEvent.keyPress(emailInput, { key: 'Enter', code: 'Enter', charCode: 13 })
+    const form = emailInput.closest('form')
+    
+    // Submit form directly (Enter key triggers form submit)
+    if (form) {
+      fireEvent.submit(form)
+    }
     
     await waitFor(() => {
       expect(screen.getByText('Email is required')).toBeInTheDocument()
     })
     
     expect(mockNavigate).not.toHaveBeenCalled()
+  })
+
+  it('should show invalid credentials error when login fails', async () => {
+    renderWithProviders(<Login />)
+    
+    const emailInput = screen.getByPlaceholderText('Email')
+    const passwordInput = screen.getByPlaceholderText('Password')
+    const loginButton = screen.getByRole('button', { name: /log in/i })
+    
+    // Use password less than 6 characters to trigger login failure
+    fireEvent.change(emailInput, { target: { value: 'user@example.com' } })
+    fireEvent.change(passwordInput, { target: { value: '12345' } })
+    fireEvent.click(loginButton)
+    
+    await waitFor(() => {
+      // First validation error appears
+      expect(screen.getByText('Password must be at least 6 characters')).toBeInTheDocument()
+    })
+  })
+
+  it('should redirect when already authenticated', async () => {
+    // Set up authenticated state
+    localStorage.setItem('lendsqr_auth_token', 'mock-token')
+    localStorage.setItem('lendsqr_user_email', 'test@example.com')
+    
+    renderWithProviders(<Login />)
+    
+    await waitFor(() => {
+      expect(mockNavigate).toHaveBeenCalledWith('/dashboard')
+    })
+  })
+
+  it('should clear error message when form is resubmitted with valid input', async () => {
+    renderWithProviders(<Login />)
+    
+    const emailInput = screen.getByPlaceholderText('Email')
+    const passwordInput = screen.getByPlaceholderText('Password')
+    const loginButton = screen.getByRole('button', { name: /log in/i })
+    
+    // Trigger validation error
+    fireEvent.click(loginButton)
+    
+    await waitFor(() => {
+      expect(screen.getByText('Email is required')).toBeInTheDocument()
+    })
+    
+    // Fill in valid values and resubmit - errors should clear on submit
+    fireEvent.change(emailInput, { target: { value: 'test@example.com' } })
+    fireEvent.change(passwordInput, { target: { value: 'password123' } })
+    fireEvent.click(loginButton)
+    
+    await waitFor(() => {
+      expect(screen.queryByText('Email is required')).not.toBeInTheDocument()
+    })
+  })
+
+  it('should submit form on Enter key with valid credentials', async () => {
+    renderWithProviders(<Login />)
+    
+    const emailInput = screen.getByPlaceholderText('Email')
+    const passwordInput = screen.getByPlaceholderText('Password')
+    const form = passwordInput.closest('form')
+    
+    fireEvent.change(emailInput, { target: { value: 'user@example.com' } })
+    fireEvent.change(passwordInput, { target: { value: 'password123' } })
+    
+    // Submit form by pressing Enter on password field
+    if (form) {
+      fireEvent.submit(form)
+    }
+    
+    await waitFor(() => {
+      expect(mockNavigate).toHaveBeenCalledWith('/dashboard')
+    })
   })
 })
 

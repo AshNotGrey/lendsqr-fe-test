@@ -28,10 +28,20 @@ const USER_EMAIL_KEY = 'lendsqr_user_email'
  * Wraps the app to provide authentication context
  */
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
-  const [userEmail, setUserEmail] = useState<string | null>(null)
+  // Initialize auth state synchronously from localStorage
+  // This prevents flash of "not authenticated" on page refresh and fixes test timing issues
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+    const token = localStorage.getItem(AUTH_TOKEN_KEY)
+    const email = localStorage.getItem(USER_EMAIL_KEY)
+    return !!(token && email)
+  })
+  
+  const [userEmail, setUserEmail] = useState<string | null>(() => {
+    return localStorage.getItem(USER_EMAIL_KEY)
+  })
 
-  // Check for existing auth on mount
+  // Keep useEffect for edge cases (e.g., localStorage changes from other tabs)
+  // But primary initialization happens synchronously above
   useEffect(() => {
     const token = localStorage.getItem(AUTH_TOKEN_KEY)
     const email = localStorage.getItem(USER_EMAIL_KEY)
@@ -39,6 +49,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (token && email) {
       setIsAuthenticated(true)
       setUserEmail(email)
+    } else {
+      setIsAuthenticated(false)
+      setUserEmail(null)
     }
   }, [])
 

@@ -62,7 +62,7 @@ const Input: React.FC<InputProps> = ({
           type={inputType}
           className={inputClasses}
           aria-invalid={!!error}
-          aria-describedby={error ? `${props.id}-error` : undefined}
+          aria-describedby={error && props.id ? `${props.id}-error` : undefined}
           {...props}
         />
         
@@ -82,7 +82,7 @@ const Input: React.FC<InputProps> = ({
       {error && (
         <span
           className={styles.error}
-          id={`${props.id}-error`}
+          id={props.id ? `${props.id}-error` : undefined}
           role="alert"
         >
           {error}
