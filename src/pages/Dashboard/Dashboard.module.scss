@@ -6,6 +6,12 @@
 .dashboard {
   width: 100%;
   max-width: $container-max-width;
+  overflow-x: hidden; // Prevent page-level horizontal overflow
+  
+  @include mobile-only {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
 }
 
 .pageTitle {
@@ -23,11 +29,15 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: $spacing-lg;
   margin-bottom: $spacing-2xl;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden; // Prevent grid from causing page overflow
   
   @include mobile-only {
     grid-template-columns: repeat(2, 1fr); // 2 columns on mobile
     gap: $spacing-md;
     margin-bottom: $spacing-lg;
+    min-width: 0; // Allow grid to shrink
   }
   
   @include desktop {
@@ -41,11 +51,14 @@
   box-shadow: $shadow-md;
   padding: $spacing-xl;
   position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden; // Prevent card from causing page overflow
   
   @include mobile-only {
     padding: $spacing-md;
     border-radius: $radius-sm;
-    overflow-x: hidden; // Prevent card from causing page overflow
+    overflow-x: hidden; // Card itself doesn't scroll
   }
 }
 

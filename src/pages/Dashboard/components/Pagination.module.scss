@@ -27,9 +27,7 @@
   color: $color-gray;
   
   @include mobile-only {
-    font-size: 0.75rem;
-    justify-content: center;
-    text-align: center;
+    display: none; // Hide "Showing X out of Y" info on mobile
   }
 }
 

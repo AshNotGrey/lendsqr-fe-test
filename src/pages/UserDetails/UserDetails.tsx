@@ -148,7 +148,7 @@ const UserDetails: React.FC = () => {
             </div>
 
             <div className={styles.userAccount}>
-              <h3 className={styles.accountBalance}>₦{user.accountBalance}</h3>
+              <h3 className={styles.accountBalance}>₦{parseFloat(user.accountBalance).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</h3>
               <p className={styles.accountInfo}>
                 {user.accountNumber}/{user.accountBank}
               </p>

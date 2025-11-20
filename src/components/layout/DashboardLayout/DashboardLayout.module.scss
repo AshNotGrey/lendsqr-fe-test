@@ -6,6 +6,9 @@
   display: flex;
   min-height: 100vh;
   background-color: $color-gray-bg;
+  overflow-x: hidden; // Prevent horizontal page scroll
+  width: 100%;
+  max-width: 100vw;
 }
 
 .mainWrapper {
@@ -13,9 +16,12 @@
   margin-left: $sidebar-width;
   display: flex;
   flex-direction: column;
+  width: calc(100% - #{$sidebar-width}); // Ensure it doesn't exceed viewport
+  overflow-x: hidden; // Prevent horizontal overflow
   
   @include mobile-only {
     margin-left: 0;
+    width: 100%;
   }
 }
 
@@ -23,6 +29,9 @@
   flex: 1;
   margin-top: $header-height;
   padding: $spacing-2xl;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden; // Prevent content from causing page overflow
   
   @include mobile-only {
     margin-top: 70px; // Match reduced mobile header height

@@ -4,7 +4,7 @@
  * Manages mobile menu state for hamburger navigation
  */
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
 import { useAuth } from '@/store/auth-context'
 import Sidebar from '../Sidebar/Sidebar'
@@ -28,6 +28,19 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />
   }
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isMobileMenuOpen])
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
