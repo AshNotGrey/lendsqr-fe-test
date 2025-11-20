@@ -8,7 +8,7 @@ import { getUsers, getUserById, paginateUsers } from './user.service'
 import { createMockUser } from '@/test/test-utils'
 
 // Mock fetch globally
-global.fetch = vi.fn()
+globalThis.fetch = vi.fn() as typeof fetch
 
 describe('User Service', () => {
   beforeEach(() => {

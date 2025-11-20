@@ -18,7 +18,7 @@ const createTestQueryClient = () =>
     defaultOptions: {
       queries: {
         retry: false,
-        cacheTime: 0,
+        gcTime: 0, // React Query v5 renamed cacheTime to gcTime
       },
     },
   })

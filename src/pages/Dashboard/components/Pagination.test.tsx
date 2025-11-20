@@ -196,7 +196,7 @@ describe('Pagination Component', () => {
   })
 
   it('should highlight current page', () => {
-    const { container } = render(
+    render(
       <Pagination
         currentPage={2}
         pageSize={10}

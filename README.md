@@ -13,7 +13,6 @@ A pixel-perfect implementation of the Lendsqr Admin Console, built with modern R
 - [Getting Started](#getting-started)
 - [Project Structure](#project-structure)
 - [Testing](#testing)
-- [Environment Variables](#environment-variables)
 - [Design Decisions](#design-decisions)
 
 ## 🛠 Tech Stack
@@ -74,11 +73,6 @@ cd lendsqr-fe-test/Lendsqr_dashboard
 2. Install dependencies:
 ```bash
 npm install
-```
-
-3. Create environment file (optional):
-```bash
-cp .env.example .env
 ```
 
 4. Start development server:
@@ -257,11 +251,6 @@ The 500-user dataset (`public/users.json`) was generated using [JSON Generator](
    - Nigerian-centric data (NGN currency, local banks, phone formats)
    - Realistic relationships between nested objects (guarantors, employment, etc.)
 
-## 🔐 Environment Variables
-
-No environment variables are required. The app automatically fetches the
-remote GitHub Gist first and falls back to the bundled `public/users.json`
-file if the network request fails.
 
 ## 🎯 Design Decisions
 

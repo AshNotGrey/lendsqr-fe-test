@@ -3,7 +3,7 @@
  * Tests table rendering and interactions
  */
 
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import UsersTable from './UsersTable'
 import { createMockUser } from '@/test/test-utils'
