@@ -126,10 +126,10 @@
   min-width: 0;
   
   @include mobile-only {
-    gap: $spacing-md;
-    flex-wrap: wrap;
-    justify-content: center;
-    text-align: center;
+    justify-content: space-between; // Spread items evenly on mobile
+    gap: $spacing-lg; // Increase gap for better spacing
+    flex-wrap: nowrap; // Prevent wrapping
+    text-align: left; // Keep text left-aligned
   }
 }
 

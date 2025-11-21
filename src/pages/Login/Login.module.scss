@@ -17,19 +17,18 @@
 // Left Section - Illustration
 .leftSection {
   flex: 1;
-  background-color: $color-white;
+  background-color: transparent; // Remove background
   padding: $spacing-2xl;
   display: flex;
   flex-direction: column;
   
   @include mobile-only {
-    padding: $spacing-lg $spacing-md;
-    min-height: auto;
-    flex: 0;
+    display: none; // Hide entire left section on mobile
   }
   
   @include desktop {
     padding: $spacing-3xl $spacing-2xl;
+    background-color: $color-gray-bg; // Keep background on desktop
   }
 }
 
@@ -94,29 +93,47 @@
   }
 }
 
+// Mobile Logo Container (shown only on mobile)
+.mobileLogoContainer {
+  display: none; // Hidden on desktop
+  
+  @include mobile-only {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: $spacing-xl;
+  }
+}
+
 .formHeader {
   margin-bottom: $spacing-3xl;
+  text-align: left; // Default left alignment
   
   @include mobile-only {
     margin-bottom: $spacing-xl;
+    text-align: center; // Center heading on mobile
   }
 }
 
 .title {
   @include heading-1;
   margin-bottom: $spacing-md;
+  text-align: left; // Default left alignment
   
   @include mobile-only {
     font-size: $font-size-3xl;
+    text-align: center; // Center on mobile
   }
 }
 
 .subtitle {
   @include body-text;
   font-size: $font-size-xl;
+  text-align: left; // Default left alignment
   
   @include mobile-only {
     font-size: $font-size-base;
+    text-align: center; // Center on mobile
   }
 }
 

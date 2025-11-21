@@ -120,6 +120,15 @@ const Login: React.FC = () => {
       {/* Right side - Login form */}
       <div className={styles.rightSection}>
         <div className={styles.formContainer}>
+          {/* Mobile Logo - shown only on mobile */}
+          <div className={styles.mobileLogoContainer}>
+            <img 
+              src={logoIcon} 
+              alt="Lendsqr" 
+              className={styles.logoImage}
+            />
+          </div>
+          
           <div className={styles.formHeader}>
             <h1 className={styles.title}>Welcome!</h1>
             <p className={styles.subtitle}>Enter details to login.</p>

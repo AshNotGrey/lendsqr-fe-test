@@ -86,10 +86,10 @@
   flex: 1;
   max-width: 400px;
   height: 40px;
+  justify-content: center; // Center the search form on desktop
   
   @include mobile-only {
-    max-width: 150px;
-    height: 36px;
+    display: none; // Hide entire search form on mobile
   }
 }
 
@@ -118,8 +118,7 @@
   }
   
   @include mobile-only {
-    padding: 0 $spacing-sm;
-    font-size: 0.75rem;
+    display: none; // Hide input on mobile, show only icon
   }
 }
 
@@ -141,6 +140,8 @@
   @include mobile-only {
     min-width: 40px;
     padding: 0 $spacing-sm;
+    border-radius: $radius-lg; // Full border radius when standalone
+    width: 40px; // Fixed width for icon button
     
     svg {
       width: 12px;
@@ -155,7 +156,35 @@
   gap: $spacing-2xl;
   
   @include mobile-only {
-    gap: $spacing-md;
+    gap: $spacing-lg; // Increased gap for even spacing on mobile
+  }
+}
+
+// Mobile-only search button (grouped with other icons)
+.mobileSearchButton {
+  display: none; // Hidden on desktop
+  
+  @include mobile-only {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    min-width: 40px; // Ensure consistent width
+    background: none; // Remove background
+    border: none;
+    cursor: pointer;
+    padding: 0; // Remove padding to rely on gap for spacing
+    transition: opacity $transition-fast;
+    color: $color-navy; // Match text color (will be inherited by SVG via currentColor)
+    
+    &:hover {
+      opacity: 0.8;
+    }
+    
+    &:active {
+      transform: scale(0.95);
+    }
   }
 }
 
@@ -180,6 +209,14 @@
   border: none;
   cursor: pointer;
   padding: $spacing-sm;
+  
+  @include mobile-only {
+    width: 40px; // Consistent width with other icons
+    height: 40px;
+    min-width: 40px;
+    padding: 0; // Remove padding to rely on gap for spacing
+    @include flex-center; // Center the icon
+  }
   
   &:hover {
     opacity: 0.8;
@@ -211,6 +248,10 @@
   align-items: center;
   gap: $spacing-sm;
   cursor: pointer;
+  
+  @include mobile-only {
+    gap: 0; // Remove internal gap on mobile for consistent spacing
+  }
   
   &:hover {
     opacity: 0.8;

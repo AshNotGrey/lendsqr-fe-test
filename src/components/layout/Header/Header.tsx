@@ -36,7 +36,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuToggle }) => {
           <span className={styles.hamburgerIcon}></span>
         </button>
 
-        {/* Search Bar */}
+        {/* Search Bar - Desktop Only */}
         <form className={styles.searchForm} onSubmit={handleSearch}>
           <input
             type="search"
@@ -55,6 +55,22 @@ const Header: React.FC<HeaderProps> = ({ onMenuToggle }) => {
 
         {/* Right section */}
         <div className={styles.rightSection}>
+          {/* Mobile Search Button - grouped with other icons */}
+          <button 
+            type="button"
+            className={styles.mobileSearchButton}
+            onClick={(e) => {
+              e.preventDefault()
+              handleSearch(e as any)
+            }}
+            aria-label="Search"
+          >
+            <svg width="20" height="20" viewBox="0 0 14 14" fill="none">
+              <circle cx="6" cy="6" r="5" stroke="currentColor" strokeWidth="2"/>
+              <path d="M9.5 9.5L12.5 12.5" stroke="currentColor" strokeWidth="2"/>
+            </svg>
+          </button>
+
           <a href="#" className={styles.docsLink}>
             Docs
           </a>
