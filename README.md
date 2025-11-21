@@ -4,7 +4,7 @@ A pixel-perfect implementation of the Lendsqr Admin Console, built with modern R
 
 ## 🚀 Live Demo
 
-[View Live Demo](https://lendsqr-fe-test.vercel.app) *(Replace with actual deployment URL)*
+[View Live Demo](https://lendsqr-fe-test.vercel.app)
 
 ## 📋 Table of Contents
 
@@ -147,74 +147,6 @@ Run tests with UI:
 npm run test:ui
 ```
 
-### Test Snapshots
-
-Test snapshots provide a way to capture the rendered output of components and compare them across test runs. This helps ensure UI consistency and catch unintended visual changes.
-
-**Creating Snapshots:**
-
-When a component test runs for the first time, Vitest automatically creates a snapshot file (`.snap`) in the `__snapshots__` directory adjacent to the test file.
-
-**Example Test with Snapshot:**
-```typescript
-import { describe, it, expect } from 'vitest'
-import { render } from '@testing-library/react'
-import Button from './Button'
-
-describe('Button Component', () => {
-  it('should match snapshot', () => {
-    const { container } = render(<Button variant="primary">Click Me</Button>)
-    expect(container.firstChild).toMatchSnapshot()
-  })
-})
-```
-
-**Updating Snapshots:**
-
-When component output intentionally changes, update snapshots:
-
-```bash
-# Update all snapshots
-npm test -- --update
-
-# Update snapshots in watch mode
-npm test -- --watch -u
-```
-
-**When to Use Snapshots:**
-
-✅ **Good for:**
-- Component structure validation
-- Catching unintended markup changes
-- Testing complex component hierarchies
-- Verifying prop combinations produce consistent output
-
-❌ **Avoid for:**
-- Testing behavior (use regular assertions)
-- Frequently changing components
-- Components with non-deterministic output (dates, random IDs)
-
-**Snapshot Files:**
-
-Snapshot files are stored alongside test files:
-```
-src/
-  components/
-    Button/
-      Button.test.tsx
-      __snapshots__/
-        Button.test.tsx.snap
-```
-
-**Best Practices:**
-1. Keep snapshots focused and small
-2. Review snapshot changes carefully before committing
-3. Use descriptive snapshot names for multiple snapshots
-4. Update snapshots when UI changes are intentional
-5. Commit snapshot files to version control
-
-**Note:** This project uses React Testing Library, which encourages testing user behavior over implementation details. While snapshots can be useful for certain scenarios, the test suite primarily focuses on functionality and user interactions.
-
 ### Test Coverage
 
 **Current Status:**
@@ -254,7 +186,6 @@ The 500-user dataset (`public/users.json`) was generated using [JSON Generator](
 
 ## 🎯 Design Decisions
 
-For detailed architectural decisions and rationale, see [TECHNICAL_DECISIONS.md](./TECHNICAL_DECISIONS.md)
 
 ### Key Highlights:
 
@@ -302,9 +233,9 @@ This project was created as part of the Lendsqr frontend engineering assessment.
 
 ## 👤 Author
 
-**Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Email: your.email@example.com
+**Obiajulu Okorie**
+- GitHub: [@AshNotGrey](https://github.com/AshNotGrey)
+- Email: official.de.ash@gmail.com
 
 ---
 
