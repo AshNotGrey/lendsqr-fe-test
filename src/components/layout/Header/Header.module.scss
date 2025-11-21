@@ -27,7 +27,7 @@
   
   @include mobile-only {
     padding: 0 $spacing-md;
-    gap: $spacing-md;
+    gap: $spacing-sm; // Reduced gap to group hamburger and right section closer
   }
 }
 
@@ -156,7 +156,7 @@
   gap: $spacing-2xl;
   
   @include mobile-only {
-    gap: $spacing-lg; // Increased gap for even spacing on mobile
+    gap: $spacing-xs; // Minimal gap to group icons closely together
   }
 }
 
